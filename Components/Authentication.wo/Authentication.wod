@@ -1,3 +1,0 @@
-UserNameList: WOPopUpButton {
-    list = getUserNameList
-}
