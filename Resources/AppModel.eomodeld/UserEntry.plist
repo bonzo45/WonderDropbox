@@ -1,0 +1,27 @@
+{
+    attributes = (
+        {
+            columnName = dropboxAccessToken; 
+            name = dropboxAccessToken; 
+            prototypeName = varchar255; 
+        }, 
+        {allowsNull = N; name = id; prototypeName = id; }, 
+        {columnName = userName; name = userName; prototypeName = varchar255; }
+    ); 
+    attributesUsedForLocking = (dropboxAccessToken, id, userName); 
+    className = "your.app.model.UserEntry"; 
+    classProperties = (dropboxAccessToken, has, userName); 
+    externalName = UserEntry; 
+    fetchSpecificationDictionary = {}; 
+    name = UserEntry; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            destination = FileEntry; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = userID; sourceAttribute = id; }); 
+            name = has; 
+        }
+    ); 
+}

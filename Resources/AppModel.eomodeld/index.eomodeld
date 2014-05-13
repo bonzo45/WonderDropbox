@@ -1,0 +1,21 @@
+{
+    EOModelVersion = "2.1"; 
+    adaptorName = JDBC; 
+    connectionDictionary = {URL = "jdbc:h2:~/H2Database"; }; 
+    entities = (
+        {className = "your.app.model.FileEntry"; name = FileEntry; }, 
+        {className = "your.app.model.UserEntry"; name = UserEntry; }
+    ); 
+    userInfo = {
+        "_EntityModeler" = {
+            activeDatabaseConfigName = Default; 
+            databaseConfigs = {
+                Default = {
+                    adaptorName = JDBC; 
+                    connectionDictionary = {URL = "jdbc:h2:~/H2Database"; }; 
+                    prototypeEntityName = EOJDBCH2Prototypes; 
+                }; 
+            }; 
+        }; 
+    }; 
+}
