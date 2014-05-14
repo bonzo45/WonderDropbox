@@ -11,12 +11,12 @@ public class Application extends ERXApplication {
 	}
 
 	public Application() {
-		ERXApplication.log.info("Welcome to " + name() + " !");
+		ERXApplication.log.info("Brace Yourselves: Sam's WOnderful Demo is starting!");
 		
 		/* ** Begin Initialization Code ** */
 		
 		// Add handler for each controller
-    ERXRouteRequestHandler handler = new ERXRouteRequestHandler();
+    ERXRouteRequestHandler handler = new ERXRouteRequestHandler(ERXRouteRequestHandler.WO);
     // User Controller
     handler.addDefaultRoutes(UserEntry.ENTITY_NAME);
     // File Controller

@@ -2,12 +2,27 @@
 
     <head>
         <title>Sam's Demo</title>
+        <!-- Library Imports -->
+        <wo:ERXJavaScript framework="app" filename="javascript/jquery.min.js"/>
+        <wo:ERXJavaScript framework="app" filename="javascript/underscore-min.js"/>
+        <wo:ERXJavaScript framework="app" filename="javascript/backbone-min.js"/>
+        
+        <!-- Style Sheets -->
+        <wo:ERXStyleSheet framework="app" filename="styles.css" />
+        
+        <!-- Application JavaScripts -->
+        <wo:ERXJavaScript framework="app" filename="javascript/init.js"/>
+        
+        <!-- Backbone Model/View/Collections -->
+        <wo:ERXJavaScript framework="app" filename="javascript/model/FileModel.js"/>
+        <wo:ERXJavaScript framework="app" filename="javascript/view/FileView.js"/>
+        <wo:ERXJavaScript framework="app" filename="javascript/view/DirectoryView.js"/>
+        <wo:ERXJavaScript framework="app" filename="javascript/collection/DirectoryCollection.js"/>
+        
     </head>
 
-    <body>
+    <body onLoad="init()">
         <wo:WOComponentContent />
-        
-        <p>This is a footer.</p>
     </body>
 
 </html>

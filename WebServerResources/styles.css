@@ -1,0 +1,47 @@
+body {
+  font-family: helvetica;
+  text-align: center;
+  width: 900px;
+  margin: 0 auto;
+  background-color: #FAFAFA;
+}
+
+h1 {
+  font-size: 40pt;
+  margin-top: 20px;
+}
+
+/* Directory & Files */
+#directory_wrapper {
+  width: 100%;
+  height: 200px;
+  margin-top: 20px;
+}
+
+table {
+  width: 100%;
+}
+
+th {
+  font-size: 12pt;
+}
+
+td {
+  font-size: 10pt;
+}
+
+.fa-folder {
+  color: #CC7A00;
+}
+
+.fa-file {
+  color: #009933;
+}
+
+.fa-dropbox.yes {
+  color: #007ee5;
+}
+
+.fa-dropbox.no {
+  color: grey;
+}

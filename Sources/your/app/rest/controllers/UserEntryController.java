@@ -7,54 +7,95 @@ import com.webobjects.appserver.WORequest;
 import com.webobjects.foundation.NSArray;
 
 import er.extensions.eof.ERXKeyFilter;
-import er.rest.routes.ERXDefaultRouteController;
+import er.rest.routes.ERXRouteController;
+import er.rest.routes.jsr311.GET;
+import er.rest.routes.jsr311.Path;
+import er.rest.routes.jsr311.PathParam;
 
-public class UserEntryController extends ERXDefaultRouteController {
+public class UserEntryController extends ERXRouteController {
 
   public UserEntryController(WORequest request) {
     super(request);
   }
 
   protected ERXKeyFilter filter() {
-    ERXKeyFilter myFilter = ERXKeyFilter.filterWithAttributes();
-    myFilter.setAnonymousUpdateEnabled(true);
-
     ERXKeyFilter filter = ERXKeyFilter.filterWithAttributes();
-    filter.include(UserEntry.USER_NAME, myFilter);
-    filter.setUnknownKeyIgnored(true);
+    // Allow nested entities to be modified without specifying their id
+    filter.setAnonymousUpdateEnabled(true);
+    filter.include(UserEntry.USER_NAME);
 
     return filter;
   }
 
-  @Override
+  /**
+   * Returns a temporary UserEntry, one that is not saved permanently.
+   * 
+   * @return
+   * @throws Throwable
+   */
   public WOActionResults newAction() throws Throwable {
     return null;
   }
 
-  @Override
-  public WOActionResults updateAction() throws Throwable {
+  /**
+   * Updates a UserEntry.
+   * 
+   * @param userEntry
+   * @return
+   * @throws Throwable
+   */
+  public WOActionResults updateAction(@PathParam("userEntry") UserEntry userEntry) throws Throwable {
     return null;
   }
 
-  @Override
-  public WOActionResults destroyAction() throws Throwable {
+  /**
+   * Deletes a UserEntry.
+   * 
+   * @param userEntry
+   * @return
+   * @throws Throwable
+   */
+  public WOActionResults destroyAction(@PathParam("userEntry") UserEntry userEntry) throws Throwable {
     return null;
   }
 
-  @Override
-  public WOActionResults showAction() throws Throwable {
-    return null;
+  /**
+   * Gets a UserEntry.
+   * 
+   * @param userEntry
+   * @return
+   * @throws Throwable
+   */
+  public WOActionResults showAction(@PathParam("userEntry") UserEntry userEntry) throws Throwable {
+    return response(userEntry, filter());
   }
 
-  @Override
+  /**
+   * Creates a new UserEntry, stores it permanently.
+   * 
+   * @return
+   * @throws Throwable
+   */
   public WOActionResults createAction() throws Throwable {
     UserEntry entry = create(filter());
     editingContext().saveChanges();
     return response(entry, filter());
   }
 
-  @Override
+  /**
+   * Gets all UserEntry(s).
+   * @return
+   * @throws Throwable
+   */
   public WOActionResults indexAction() throws Throwable {
+    NSArray<UserEntry> entries = UserEntry.fetchAllUserEntries(editingContext());
+    return response(entries, filter());
+  }
+  
+  /* Custom Routes, like Jersey. I miss Jersey... :-( */
+  @GET
+  @Path("/user/{id:Integer}")
+  public WOActionResults employeesAction(@PathParam("number") Integer number) {
     NSArray<UserEntry> entries = UserEntry.fetchAllUserEntries(editingContext());
     return response(entries, filter());
   }
