@@ -10,18 +10,9 @@
     ); 
     attributesUsedForLocking = (dropboxAccessToken, id, userName); 
     className = "your.app.model.UserEntry"; 
-    classProperties = (dropboxAccessToken, has, userName); 
+    classProperties = (dropboxAccessToken, userName); 
     externalName = UserEntry; 
     fetchSpecificationDictionary = {}; 
     name = UserEntry; 
     primaryKeyAttributes = (id); 
-    relationships = (
-        {
-            destination = FileEntry; 
-            isToMany = Y; 
-            joinSemantic = EOInnerJoin; 
-            joins = ({destinationAttribute = userID; sourceAttribute = id; }); 
-            name = has; 
-        }
-    ); 
 }

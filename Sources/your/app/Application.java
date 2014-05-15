@@ -1,7 +1,7 @@
 package your.app;
 
-import your.app.model.FileEntry;
-import your.app.model.UserEntry;
+import your.app.rest.controllers.FileEntryController;
+import your.app.rest.controllers.UserEntryController;
 import er.extensions.appserver.ERXApplication;
 import er.rest.routes.ERXRouteRequestHandler;
 
@@ -13,14 +13,18 @@ public class Application extends ERXApplication {
 	public Application() {
 		ERXApplication.log.info("Brace Yourselves: Sam's WOnderful Demo is starting!");
 		
+		
+    setDefaultRequestHandler(requestHandlerForKey(directActionRequestHandlerKey()));
+    
 		/* ** Begin Initialization Code ** */
 		
-		// Add handler for each controller
     ERXRouteRequestHandler handler = new ERXRouteRequestHandler(ERXRouteRequestHandler.WO);
+
     // User Controller
-    handler.addDefaultRoutes(UserEntry.ENTITY_NAME);
+    handler.addRoutes(UserEntryController.class);
     // File Controller
-    handler.addDefaultRoutes(FileEntry.ENTITY_NAME);
+    handler.addRoutes(FileEntryController.class);
+    
     ERXRouteRequestHandler.register(handler);
     
     /* ** End Initialization Code ** */

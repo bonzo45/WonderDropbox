@@ -19,13 +19,11 @@ public abstract class _UserEntry extends  ERXGenericRecord {
   public static final ERXKey<String> DROPBOX_ACCESS_TOKEN = new ERXKey<String>("dropboxAccessToken");
   public static final ERXKey<String> USER_NAME = new ERXKey<String>("userName");
   // Relationship Keys
-  public static final ERXKey<your.app.model.FileEntry> HAS = new ERXKey<your.app.model.FileEntry>("has");
 
   // Attributes
   public static final String DROPBOX_ACCESS_TOKEN_KEY = DROPBOX_ACCESS_TOKEN.key();
   public static final String USER_NAME_KEY = USER_NAME.key();
   // Relationships
-  public static final String HAS_KEY = HAS.key();
 
   private static Logger LOG = Logger.getLogger(_UserEntry.class);
 
@@ -57,100 +55,6 @@ public abstract class _UserEntry extends  ERXGenericRecord {
     	_UserEntry.LOG.debug( "updating userName from " + userName() + " to " + value);
     }
     takeStoredValueForKey(value, _UserEntry.USER_NAME_KEY);
-  }
-
-  public NSArray<your.app.model.FileEntry> has() {
-    return (NSArray<your.app.model.FileEntry>)storedValueForKey(_UserEntry.HAS_KEY);
-  }
-
-  public NSArray<your.app.model.FileEntry> has(EOQualifier qualifier) {
-    return has(qualifier, null, false);
-  }
-
-  public NSArray<your.app.model.FileEntry> has(EOQualifier qualifier, boolean fetch) {
-    return has(qualifier, null, fetch);
-  }
-
-  public NSArray<your.app.model.FileEntry> has(EOQualifier qualifier, NSArray<EOSortOrdering> sortOrderings, boolean fetch) {
-    NSArray<your.app.model.FileEntry> results;
-    if (fetch) {
-      EOQualifier fullQualifier;
-      EOQualifier inverseQualifier = new EOKeyValueQualifier(your.app.model.FileEntry.OWNED_BY_KEY, EOQualifier.QualifierOperatorEqual, this);
-    	
-      if (qualifier == null) {
-        fullQualifier = inverseQualifier;
-      }
-      else {
-        NSMutableArray<EOQualifier> qualifiers = new NSMutableArray<EOQualifier>();
-        qualifiers.addObject(qualifier);
-        qualifiers.addObject(inverseQualifier);
-        fullQualifier = new EOAndQualifier(qualifiers);
-      }
-
-      results = your.app.model.FileEntry.fetchFileEntries(editingContext(), fullQualifier, sortOrderings);
-    }
-    else {
-      results = has();
-      if (qualifier != null) {
-        results = (NSArray<your.app.model.FileEntry>)EOQualifier.filteredArrayWithQualifier(results, qualifier);
-      }
-      if (sortOrderings != null) {
-        results = (NSArray<your.app.model.FileEntry>)EOSortOrdering.sortedArrayUsingKeyOrderArray(results, sortOrderings);
-      }
-    }
-    return results;
-  }
-  
-  public void addToHas(your.app.model.FileEntry object) {
-    includeObjectIntoPropertyWithKey(object, _UserEntry.HAS_KEY);
-  }
-
-  public void removeFromHas(your.app.model.FileEntry object) {
-    excludeObjectFromPropertyWithKey(object, _UserEntry.HAS_KEY);
-  }
-
-  public void addToHasRelationship(your.app.model.FileEntry object) {
-    if (_UserEntry.LOG.isDebugEnabled()) {
-      _UserEntry.LOG.debug("adding " + object + " to has relationship");
-    }
-    if (er.extensions.eof.ERXGenericRecord.InverseRelationshipUpdater.updateInverseRelationships()) {
-    	addToHas(object);
-    }
-    else {
-    	addObjectToBothSidesOfRelationshipWithKey(object, _UserEntry.HAS_KEY);
-    }
-  }
-
-  public void removeFromHasRelationship(your.app.model.FileEntry object) {
-    if (_UserEntry.LOG.isDebugEnabled()) {
-      _UserEntry.LOG.debug("removing " + object + " from has relationship");
-    }
-    if (er.extensions.eof.ERXGenericRecord.InverseRelationshipUpdater.updateInverseRelationships()) {
-    	removeFromHas(object);
-    }
-    else {
-    	removeObjectFromBothSidesOfRelationshipWithKey(object, _UserEntry.HAS_KEY);
-    }
-  }
-
-  public your.app.model.FileEntry createHasRelationship() {
-    EOClassDescription eoClassDesc = EOClassDescription.classDescriptionForEntityName( your.app.model.FileEntry.ENTITY_NAME );
-    EOEnterpriseObject eo = eoClassDesc.createInstanceWithEditingContext(editingContext(), null);
-    editingContext().insertObject(eo);
-    addObjectToBothSidesOfRelationshipWithKey(eo, _UserEntry.HAS_KEY);
-    return (your.app.model.FileEntry) eo;
-  }
-
-  public void deleteHasRelationship(your.app.model.FileEntry object) {
-    removeObjectFromBothSidesOfRelationshipWithKey(object, _UserEntry.HAS_KEY);
-    editingContext().deleteObject(object);
-  }
-
-  public void deleteAllHasRelationships() {
-    Enumeration<your.app.model.FileEntry> objects = has().immutableClone().objectEnumerator();
-    while (objects.hasMoreElements()) {
-      deleteHasRelationship(objects.nextElement());
-    }
   }
 
 

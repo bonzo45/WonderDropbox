@@ -7,7 +7,7 @@
     ); 
     attributesUsedForLocking = (fileName, filePath, id, userID); 
     className = "your.app.model.FileEntry"; 
-    classProperties = (fileName, filePath, "owned_by"); 
+    classProperties = (fileName, filePath, owned); 
     externalName = FileEntry; 
     fetchSpecificationDictionary = {}; 
     name = FileEntry; 
@@ -19,7 +19,7 @@
             isToMany = N; 
             joinSemantic = EOInnerJoin; 
             joins = ({destinationAttribute = id; sourceAttribute = userID; }); 
-            name = "owned_by"; 
+            name = owned; 
         }
     ); 
 }

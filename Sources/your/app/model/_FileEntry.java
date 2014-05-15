@@ -19,13 +19,13 @@ public abstract class _FileEntry extends  ERXGenericRecord {
   public static final ERXKey<String> FILE_NAME = new ERXKey<String>("fileName");
   public static final ERXKey<String> FILE_PATH = new ERXKey<String>("filePath");
   // Relationship Keys
-  public static final ERXKey<your.app.model.UserEntry> OWNED_BY = new ERXKey<your.app.model.UserEntry>("owned_by");
+  public static final ERXKey<your.app.model.UserEntry> OWNED = new ERXKey<your.app.model.UserEntry>("owned");
 
   // Attributes
   public static final String FILE_NAME_KEY = FILE_NAME.key();
   public static final String FILE_PATH_KEY = FILE_PATH.key();
   // Relationships
-  public static final String OWNED_BY_KEY = OWNED_BY.key();
+  public static final String OWNED_KEY = OWNED.key();
 
   private static Logger LOG = Logger.getLogger(_FileEntry.class);
 
@@ -59,39 +59,39 @@ public abstract class _FileEntry extends  ERXGenericRecord {
     takeStoredValueForKey(value, _FileEntry.FILE_PATH_KEY);
   }
 
-  public your.app.model.UserEntry owned_by() {
-    return (your.app.model.UserEntry)storedValueForKey(_FileEntry.OWNED_BY_KEY);
+  public your.app.model.UserEntry owned() {
+    return (your.app.model.UserEntry)storedValueForKey(_FileEntry.OWNED_KEY);
   }
   
-  public void setOwned_by(your.app.model.UserEntry value) {
-    takeStoredValueForKey(value, _FileEntry.OWNED_BY_KEY);
+  public void setOwned(your.app.model.UserEntry value) {
+    takeStoredValueForKey(value, _FileEntry.OWNED_KEY);
   }
 
-  public void setOwned_byRelationship(your.app.model.UserEntry value) {
+  public void setOwnedRelationship(your.app.model.UserEntry value) {
     if (_FileEntry.LOG.isDebugEnabled()) {
-      _FileEntry.LOG.debug("updating owned_by from " + owned_by() + " to " + value);
+      _FileEntry.LOG.debug("updating owned from " + owned() + " to " + value);
     }
     if (er.extensions.eof.ERXGenericRecord.InverseRelationshipUpdater.updateInverseRelationships()) {
-    	setOwned_by(value);
+    	setOwned(value);
     }
     else if (value == null) {
-    	your.app.model.UserEntry oldValue = owned_by();
+    	your.app.model.UserEntry oldValue = owned();
     	if (oldValue != null) {
-    		removeObjectFromBothSidesOfRelationshipWithKey(oldValue, _FileEntry.OWNED_BY_KEY);
+    		removeObjectFromBothSidesOfRelationshipWithKey(oldValue, _FileEntry.OWNED_KEY);
       }
     } else {
-    	addObjectToBothSidesOfRelationshipWithKey(value, _FileEntry.OWNED_BY_KEY);
+    	addObjectToBothSidesOfRelationshipWithKey(value, _FileEntry.OWNED_KEY);
     }
   }
   
 
   public static FileEntry createFileEntry(EOEditingContext editingContext, String fileName
 , String filePath
-, your.app.model.UserEntry owned_by) {
+, your.app.model.UserEntry owned) {
     FileEntry eo = (FileEntry) EOUtilities.createAndInsertInstance(editingContext, _FileEntry.ENTITY_NAME);    
 		eo.setFileName(fileName);
 		eo.setFilePath(filePath);
-    eo.setOwned_byRelationship(owned_by);
+    eo.setOwnedRelationship(owned);
     return eo;
   }
 
