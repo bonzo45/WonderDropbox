@@ -24,17 +24,15 @@ public class AppModel0 extends ERXMigrationDatabase.Migration {
     fileEntryTable.newStringColumn("fileName", 255, false);
     fileEntryTable.newStringColumn("filePath", 255, false);
     fileEntryTable.newIntegerColumn("id", false);
-    fileEntryTable.newIntegerColumn("userID", false);
     fileEntryTable.create();
     fileEntryTable.setPrimaryKey("id");
 
     ERXMigrationTable userEntryTable = database.newTableNamed("UserEntry");
-    userEntryTable.newStringColumn("dropboxAccessToken", 255, false);
+    userEntryTable.newStringColumn("dropboxAccessToken", 255, true);
     userEntryTable.newIntegerColumn("id", false);
     userEntryTable.newStringColumn("userName", 255, false);
     userEntryTable.create();
     userEntryTable.setPrimaryKey("id");
 
-    fileEntryTable.addForeignKey("userID", "UserEntry", "id");
   }
 }

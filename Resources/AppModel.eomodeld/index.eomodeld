@@ -1,7 +1,12 @@
 {
     EOModelVersion = "2.1"; 
     adaptorName = JDBC; 
-    connectionDictionary = {URL = "jdbc:h2:~/H2Database"; }; 
+    connectionDictionary = {
+        URL = "jdbc:postgresql://localhost/dropboxwonder"; 
+        driver = "org.postgresql.Driver"; 
+        plugin = PostgresqlPlugIn; 
+        username = Sam; 
+    }; 
     entities = (
         {className = "your.app.model.FileEntry"; name = FileEntry; }, 
         {className = "your.app.model.UserEntry"; name = UserEntry; }
@@ -12,8 +17,13 @@
             databaseConfigs = {
                 Default = {
                     adaptorName = JDBC; 
-                    connectionDictionary = {URL = "jdbc:h2:~/H2Database"; }; 
-                    prototypeEntityName = EOJDBCH2Prototypes; 
+                    connectionDictionary = {
+                        URL = "jdbc:postgresql://localhost/dropboxwonder"; 
+                        driver = "org.postgresql.Driver"; 
+                        plugin = PostgresqlPlugIn; 
+                        username = Sam; 
+                    }; 
+                    prototypeEntityName = EOJDBCPostgresqlPrototypes; 
                 }; 
             }; 
         }; 

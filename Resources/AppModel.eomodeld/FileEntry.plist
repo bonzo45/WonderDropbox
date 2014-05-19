@@ -2,24 +2,13 @@
     attributes = (
         {columnName = fileName; name = fileName; prototypeName = varchar255; }, 
         {columnName = filePath; name = filePath; prototypeName = varchar255; }, 
-        {allowsNull = N; name = id; prototypeName = id; }, 
-        {allowsNull = N; columnName = userID; name = userID; prototypeName = id; }
+        {allowsNull = N; name = id; prototypeName = id; }
     ); 
-    attributesUsedForLocking = (fileName, filePath, id, userID); 
+    attributesUsedForLocking = (fileName, filePath, id); 
     className = "your.app.model.FileEntry"; 
-    classProperties = (fileName, filePath, owned); 
+    classProperties = (fileName, filePath); 
     externalName = FileEntry; 
     fetchSpecificationDictionary = {}; 
     name = FileEntry; 
     primaryKeyAttributes = (id); 
-    relationships = (
-        {
-            destination = UserEntry; 
-            isMandatory = Y; 
-            isToMany = N; 
-            joinSemantic = EOInnerJoin; 
-            joins = ({destinationAttribute = id; sourceAttribute = userID; }); 
-            name = owned; 
-        }
-    ); 
 }

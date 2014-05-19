@@ -58,11 +58,9 @@ public abstract class _UserEntry extends  ERXGenericRecord {
   }
 
 
-  public static UserEntry createUserEntry(EOEditingContext editingContext, String dropboxAccessToken
-, String userName
+  public static UserEntry createUserEntry(EOEditingContext editingContext, String userName
 ) {
     UserEntry eo = (UserEntry) EOUtilities.createAndInsertInstance(editingContext, _UserEntry.ENTITY_NAME);    
-		eo.setDropboxAccessToken(dropboxAccessToken);
 		eo.setUserName(userName);
     return eo;
   }

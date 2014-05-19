@@ -1,6 +1,7 @@
 {
     attributes = (
         {
+            allowsNull = Y; 
             columnName = dropboxAccessToken; 
             name = dropboxAccessToken; 
             prototypeName = varchar255; 
