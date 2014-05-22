@@ -66,6 +66,5 @@ public class FileEntryController extends er.rest.routes.ERXRouteController {
   @Override
   public String entityName() {
     return "FileEntry";
-
   }
 }

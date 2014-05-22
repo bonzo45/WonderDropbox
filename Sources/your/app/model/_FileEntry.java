@@ -16,13 +16,21 @@ public abstract class _FileEntry extends  ERXGenericRecord {
   public static final String ENTITY_NAME = "FileEntry";
 
   // Attribute Keys
+  public static final ERXKey<NSTimestamp> CREATION_TIME = new ERXKey<NSTimestamp>("creationTime");
   public static final ERXKey<String> FILE_NAME = new ERXKey<String>("fileName");
   public static final ERXKey<String> FILE_PATH = new ERXKey<String>("filePath");
+  public static final ERXKey<Boolean> IS_DIRECTORY = new ERXKey<Boolean>("isDirectory");
+  public static final ERXKey<NSTimestamp> MODIFIED_TIME = new ERXKey<NSTimestamp>("modifiedTime");
+  public static final ERXKey<Long> SIZE = new ERXKey<Long>("size");
   // Relationship Keys
 
   // Attributes
+  public static final String CREATION_TIME_KEY = CREATION_TIME.key();
   public static final String FILE_NAME_KEY = FILE_NAME.key();
   public static final String FILE_PATH_KEY = FILE_PATH.key();
+  public static final String IS_DIRECTORY_KEY = IS_DIRECTORY.key();
+  public static final String MODIFIED_TIME_KEY = MODIFIED_TIME.key();
+  public static final String SIZE_KEY = SIZE.key();
   // Relationships
 
   private static Logger LOG = Logger.getLogger(_FileEntry.class);
@@ -33,6 +41,17 @@ public abstract class _FileEntry extends  ERXGenericRecord {
       throw new IllegalStateException("You attempted to localInstance " + this + ", which has not yet committed.");
     }
     return localInstance;
+  }
+
+  public NSTimestamp creationTime() {
+    return (NSTimestamp) storedValueForKey(_FileEntry.CREATION_TIME_KEY);
+  }
+
+  public void setCreationTime(NSTimestamp value) {
+    if (_FileEntry.LOG.isDebugEnabled()) {
+    	_FileEntry.LOG.debug( "updating creationTime from " + creationTime() + " to " + value);
+    }
+    takeStoredValueForKey(value, _FileEntry.CREATION_TIME_KEY);
   }
 
   public String fileName() {
@@ -57,13 +76,54 @@ public abstract class _FileEntry extends  ERXGenericRecord {
     takeStoredValueForKey(value, _FileEntry.FILE_PATH_KEY);
   }
 
+  public Boolean isDirectory() {
+    return (Boolean) storedValueForKey(_FileEntry.IS_DIRECTORY_KEY);
+  }
 
-  public static FileEntry createFileEntry(EOEditingContext editingContext, String fileName
+  public void setIsDirectory(Boolean value) {
+    if (_FileEntry.LOG.isDebugEnabled()) {
+    	_FileEntry.LOG.debug( "updating isDirectory from " + isDirectory() + " to " + value);
+    }
+    takeStoredValueForKey(value, _FileEntry.IS_DIRECTORY_KEY);
+  }
+
+  public NSTimestamp modifiedTime() {
+    return (NSTimestamp) storedValueForKey(_FileEntry.MODIFIED_TIME_KEY);
+  }
+
+  public void setModifiedTime(NSTimestamp value) {
+    if (_FileEntry.LOG.isDebugEnabled()) {
+    	_FileEntry.LOG.debug( "updating modifiedTime from " + modifiedTime() + " to " + value);
+    }
+    takeStoredValueForKey(value, _FileEntry.MODIFIED_TIME_KEY);
+  }
+
+  public Long size() {
+    return (Long) storedValueForKey(_FileEntry.SIZE_KEY);
+  }
+
+  public void setSize(Long value) {
+    if (_FileEntry.LOG.isDebugEnabled()) {
+    	_FileEntry.LOG.debug( "updating size from " + size() + " to " + value);
+    }
+    takeStoredValueForKey(value, _FileEntry.SIZE_KEY);
+  }
+
+
+  public static FileEntry createFileEntry(EOEditingContext editingContext, NSTimestamp creationTime
+, String fileName
 , String filePath
+, Boolean isDirectory
+, NSTimestamp modifiedTime
+, Long size
 ) {
     FileEntry eo = (FileEntry) EOUtilities.createAndInsertInstance(editingContext, _FileEntry.ENTITY_NAME);    
+		eo.setCreationTime(creationTime);
 		eo.setFileName(fileName);
 		eo.setFilePath(filePath);
+		eo.setIsDirectory(isDirectory);
+		eo.setModifiedTime(modifiedTime);
+		eo.setSize(size);
     return eo;
   }
 

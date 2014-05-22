@@ -1,12 +1,31 @@
 {
     attributes = (
+        {columnName = creationTime; name = creationTime; prototypeName = dateTime; }, 
         {columnName = fileName; name = fileName; prototypeName = varchar255; }, 
         {columnName = filePath; name = filePath; prototypeName = varchar255; }, 
-        {allowsNull = N; name = id; prototypeName = id; }
+        {allowsNull = N; name = id; prototypeName = id; }, 
+        {
+            columnName = isDirectory; 
+            name = isDirectory; 
+            valueClassName = NSNumber; 
+            valueType = c; 
+        }, 
+        {columnName = modifiedTime; name = modifiedTime; prototypeName = dateTime; }, 
+        {allowsNull = N; columnName = parentID; name = parentID; prototypeName = id; }, 
+        {columnName = size; name = size; prototypeName = longNumber; }
     ); 
-    attributesUsedForLocking = (fileName, filePath, id); 
+    attributesUsedForLocking = (
+        creationTime, 
+        fileName, 
+        filePath, 
+        id, 
+        isDirectory, 
+        modifiedTime, 
+        parentID, 
+        size
+    ); 
     className = "your.app.model.FileEntry"; 
-    classProperties = (fileName, filePath); 
+    classProperties = (creationTime, fileName, filePath, isDirectory, modifiedTime, size); 
     externalName = FileEntry; 
     fetchSpecificationDictionary = {}; 
     name = FileEntry; 
